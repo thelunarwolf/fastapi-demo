@@ -20,6 +20,9 @@ jobs:
             project_id: ${{ secrets.GCP_PROJECT_ID }}
             service_account_email: ${{ secrets.GCP_EMAIL }}
             service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+            
+        - name: Print env
+          run: echo ${{secrets.SECRET_KEY}} ${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}} ${{secrets.ALGORITHM}}
 
         - name: Configure Docker
           run: gcloud auth configure-docker --quiet
@@ -32,6 +35,6 @@ jobs:
 
         - name: Push Docker image
           run: docker push $IMAGE_NAME
-
+          
         - name: Deploy Docker image
-          run: gcloud run --env SECRET_KEY=${{ env.SECRET_KEY }} --env ALGORITHM=${{ env.ALGORITHM }}  --env ACCESS_TOKEN_EXPIRE_MINUTES=${{ env.ACCESS_TOKEN_EXPIRE_MINUTES }}  deploy ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
+          run: gcloud run deploy ${{ secrets.GCP_PROJECT_ID }}  --region us-central1  --image $IMAGE_NAME --platform managed  --set-env-vars "SECRET_KEY=${{secrets.SECRET_KEY}}"  --set-env-vars "ACCESS_TOKEN_EXPIRE_MINUTES=${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}"  --set-env-vars "ALGORITHM=${{secrets.ALGORITHM}}" 
