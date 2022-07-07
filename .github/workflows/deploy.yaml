@@ -38,7 +38,7 @@ jobs:
           
         - name: Deploy Docker image
           run: gcloud run deploy ${{ secrets.GCP_PROJECT_ID }} \
-                --region -region us-central1 \
+                --region us-central1 \
                 --image $IMAGE_NAME --platform managed \
                 --set-env-vars "SECRET_KEY=${{env.SECRET_KEY}}" \
                 --set-env-vars "ACCESS_TOKEN_EXPIRE_MINUTES=${{env.ACCESS_TOKEN_EXPIRE_MINUTES}}" \
