@@ -37,4 +37,8 @@ jobs:
           run: docker push $IMAGE_NAME
           
         - name: Deploy Docker image
-          run: gcloud run '--set-env-vars', 'SECRET_KEY=${{secrets.SECRET_KEY}}' '--set-env-vars', 'ACCESS_TOKEN_EXPIRE_MINUTES=${{secrets.ACCESS_TOKEN_EXPIRE_MINUTES}}' '--set-env-vars', 'SECRET_KEY=${{secrets.ALGORITHM}}'  deploy ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
+          run: gcloud run deploy \
+                --set-env-vars="SECRET_KEY=${{env.SECRET_KEY}}" \
+                --set-env-vars="ACCESS_TOKEN_EXPIRE_MINUTES=${{env.ACCESS_TOKEN_EXPIRE_MINUTES}}" \
+                --set-env-vars="ALGORITHM=${{env.ALGORITHM}}" \
+                ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
