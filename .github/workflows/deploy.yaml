@@ -28,13 +28,13 @@ jobs:
           uses: actions/checkout@v2
 
         - name: Build Docker image
-          run: docker build . -t fastapidemo
+          run: docker build . -t fast_api_demo
 
         - name: Test Docker image
-          run: docker run fastapidemo sh -c "go test -v"
+          run: docker run fast_api_demo sh -c "go test -v"
 
         - name: Push Docker image
-          run: docker push fastapidemo
+          run: docker push fast_api_demo
 
         - name: Deploy Docker image
-          run: gcloud run deploy ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
+          run: gcloud run deploy ${{ secrets.GCP_PROJECT_ID }} --image fast_api_demo --region us-central1 --platform managed
