@@ -30,9 +30,6 @@ jobs:
         - name: Build Docker image
           run: docker build . -t fast_api_demo
 
-        - name: Test Docker image
-          run: docker run fast_api_demo sh -c "go test -v"
-
         - name: Push Docker image
           run: docker push fast_api_demo
 
