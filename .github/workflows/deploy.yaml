@@ -2,9 +2,9 @@ name: Docker
 
 on:
   push:
-    branches: [gke]
+    branches: [gke-config]
   pull_request:
-    branches: [gke]
+    branches: [gke-config]
 
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
