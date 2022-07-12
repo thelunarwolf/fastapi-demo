@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: fastapi-demo
-        image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE
+        image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG
         ports:
         - containerPort: 5000
         resources:
