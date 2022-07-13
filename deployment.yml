@@ -22,7 +22,7 @@ spec:
         image: LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE
         ports:
         - containerPort: 8080
-          name: demo-fastapi-port
+          name: fastapi-port
         resources:
           requests:
             cpu: 100m

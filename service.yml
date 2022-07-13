@@ -20,6 +20,6 @@ spec:
   type: LoadBalancer
   ports:
     - port: 5000
-      targetPort: demo-fastapi-port
+      targetPort: fastapi-port
   selector:
     app: fastapi-demo
