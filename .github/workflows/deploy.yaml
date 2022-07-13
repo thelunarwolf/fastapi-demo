@@ -55,7 +55,7 @@ jobs:
         - name: Deploy
           run: |-
             # replacing the image name in the k8s template
-            ./kustomize edit set image LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG=$IMAGE_NAME
+            ./kustomize edit set image LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE=$IMAGE_NAME
             ./kustomize build . | kubectl apply -f -
             kubectl rollout status deployment/$DEPLOYMENT_NAME
             kubectl get services -o wide
