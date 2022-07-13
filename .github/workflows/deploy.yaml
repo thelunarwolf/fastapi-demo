@@ -43,6 +43,9 @@ jobs:
         - name: Set up GKE credentials
           run: |-
             gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+            
+        - name: Print Image Name
+          run: echo $IMAGE_NAME
 
         - name: Set up Kustomize
           run: |-
