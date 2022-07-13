@@ -53,9 +53,6 @@ jobs:
           run: |-
             # replacing the image name in the k8s template
             ./kustomize edit set image LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY/IMAGE:TAG=$IMAGE_NAME
-            ./kustomize edit set env SECRET_KEY=$SECRET_KEY container=fastapi-demo
-            ./kustomize edit set env ACCESS_TOKEN_EXPIRE_MINUTES=$ACCESS_TOKEN_EXPIRE_MINUTES container=fastapi-demo
-            ./kustomize edit set env ALGORITHM=$ALGORITHM container=fastapi-demo
             ./kustomize build . | kubectl apply -f -
             kubectl rollout status deployment/$DEPLOYMENT_NAME
             kubectl get services -o wide
